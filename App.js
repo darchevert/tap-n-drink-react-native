@@ -34,18 +34,26 @@ case.push(<View><Text>tototot</Text></View>)
 
     return (
       <View style={styles.container}>
-        <Text h3 style={styles.h3}>Règles du jeu</Text>
+<Text h3 style={styles.h3}>Règles du jeu</Text>
         <View>
 
-          <Text h1 style={styles.h1} >TAP'N'DRINK</Text>
-          <Text text style={styles.text} >AYEZ LA BONNE INTUITION</Text>
-
+          <Text h1 style={styles.h1}>TAP'N'DRINK</Text>
+          <Text text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
           </View>
-            {case}
-
-
           <Button
+            title="BUTTON_1"
+            loadingProps={{ size: "large", color: "rgba(111, 202, 186, 1)" }}
+            titleStyle={{ fontWeight: "700" }}
+            buttonStyle={{
+              backgroundColor: "rgba(92, 99,216, 1)",
+              width: 45,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+            }}
+            containerStyle={{ marginTop: 20 }}
+          />
 
             title="REJOUER"
             color="#475577"
@@ -106,5 +114,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     color: '#efefef',
     // fontFamily: 'OpenSans-Regular',
+
   }
 });
