@@ -15,14 +15,26 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-<Text h3 style={styles.h3} style={{ fontFamily: 'KaushanScript-Regular'}}>Règles du jeu</Text>
+<Text h3 style={styles.h3}>Règles du jeu</Text>
         <View>
 
-          <Text h1 style={styles.h1} style={{ fontFamily: 'KaushanScript-Regular'}}>TAP'N'DRINK</Text>
-          <Text text style={styles.text} style={{ fontFamily: 'OpenSans-Regular'}}>AYEZ LA BONNE INTUITION</Text>
-
+          <Text h1 style={styles.h1}>TAP'N'DRINK</Text>
+          <Text text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
           </View>
+          <Button
+            title="BUTTON_1"
+            loadingProps={{ size: "large", color: "rgba(111, 202, 186, 1)" }}
+            titleStyle={{ fontWeight: "700" }}
+            buttonStyle={{
+              backgroundColor: "rgba(92, 99,216, 1)",
+              width: 45,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+            }}
+            containerStyle={{ marginTop: 20 }}
+          />
 
           {/* <Button id="button" class="col-md-4 offset-md-4 btn btn-light btn-lg rounded-0" onclick="luxe()" style="display:none;">REJOUER</Button> */}
 
@@ -79,5 +91,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     color: '#efefef',
     // fontFamily: 'OpenSans-Regular',
+
   }
 });
