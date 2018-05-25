@@ -4,27 +4,54 @@ import { Font } from 'expo';
 
 export default class App extends React.Component {
 
-  componentDidMount() {
-      Font.loadAsync({
-        'KaushanScript-Regular': require('./assets/fonts/KaushanScript-Regular.ttf'),
-        'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
 
-      });
-    }
+  constructor(){
+		super();
+		this.state = {
+      casetmp:9,
+			case: []
+		};
+	}
+
+  // componentDidMount() {
+  //     Font.loadAsync({
+  //       'KaushanScript-Regular': require('./assets/fonts/KaushanScript-Regular.ttf'),
+  //       'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+  //
+  //     });
+  //   }
 
   render() {
+var case = [];
+
+for(var i=0; i<this.state.casetmp; i++ ){
+case.push(<View><Text>tototot</Text></View>)
+
+
+}
+
+
+
     return (
       <View style={styles.container}>
-<Text h3 style={styles.h3} style={{ fontFamily: 'KaushanScript-Regular'}}>Règles du jeu</Text>
+        <Text h3 style={styles.h3}>Règles du jeu</Text>
         <View>
 
-          <Text h1 style={styles.h1} style={{ fontFamily: 'KaushanScript-Regular'}}>TAP'N'DRINK</Text>
-          <Text text style={styles.text} style={{ fontFamily: 'OpenSans-Regular'}}>AYEZ LA BONNE INTUITION</Text>
+          <Text h1 style={styles.h1} >TAP'N'DRINK</Text>
+          <Text text style={styles.text} >AYEZ LA BONNE INTUITION</Text>
 
 
           </View>
+            {case}
 
-          {/* <Button id="button" class="col-md-4 offset-md-4 btn btn-light btn-lg rounded-0" onclick="luxe()" style="display:none;">REJOUER</Button> */}
+
+          <Button
+
+            title="REJOUER"
+            color="#475577"
+
+
+          />
 
         </View>
 
@@ -45,7 +72,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25,
     color: '#efefef',
-     // fontFamily: 'KaushanScript-Regular',
+    // fontFamily: 'KaushanScript-Regular',
   },
   h2: {
     textAlign: 'center',
