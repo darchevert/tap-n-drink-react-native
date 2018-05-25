@@ -41,6 +41,8 @@ case.push(<View><Text>tototot</Text></View>)
           <Text text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
           </View>
+
+          {case}
           <Button
             title="BUTTON_1"
             loadingProps={{ size: "large", color: "rgba(111, 202, 186, 1)" }}
