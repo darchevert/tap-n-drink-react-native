@@ -51,6 +51,7 @@ export default class App extends React.Component {
       carre.push(
         <Text style={styles.h1}>{i+1}</Text>
       );
+      var key = i
 
     }
 
@@ -71,6 +72,7 @@ export default class App extends React.Component {
           size: "large",
           color: "rgba(111, 202, 186, 1)"
         }}
+        key={key}
         titleStyle={{
           fontWeight: "700"
         }}
