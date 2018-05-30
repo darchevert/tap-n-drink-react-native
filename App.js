@@ -15,6 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
 <Text h3 style={styles.h3}>Règles du jeu</Text>
         <View>
 
