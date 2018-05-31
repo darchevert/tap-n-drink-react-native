@@ -6,6 +6,7 @@ export default class App extends React.Component {
 
   constructor() {
     super();
+    this.changeColor = this.changeColor.bind(this);
     this.state = {
       myArray: [
         {
@@ -60,6 +61,17 @@ export default class App extends React.Component {
       return arra1;
     }
     shuffle(this.state.myArray);
+
+    function changeColor(){
+      if(this.state.value == "true") {
+        this.style.backgroundColor = 'green'
+        this.style.color = '#efefef'
+      }
+      else {
+        this.style.backgroundColor = '#e14938'
+        this.style.color = '#efefef'
+      }
+    }
   }
 
   render() {
@@ -68,13 +80,20 @@ export default class App extends React.Component {
 
     for (var i = 0; i < this.state.myArray.length; i++) {
       carre.push(<View style={{
-          width: 70,
-          height: 70,
-          backgroundColor: '#e2e2e2'
+          width: 100,
+          height: 100,
+          backgroundColor: '#e2e2e2',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderStyle: 'solid',
+          borderWidth: 2,
+          borderColor: '#475577'
         }}>
-        <Text>{i + 1}</Text>
+        <Text style={{
+          color: '#475577',
+          fontSize: 50
+        }}>{i + 1}</Text>
       </View>);
-
     }
 
     return (<View style={styles.container}>
@@ -89,11 +108,12 @@ export default class App extends React.Component {
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+          flexWrap: 'wrap',
+        }}
+        >
         {carre}
       </View>
-      {/* <Button title="BUTTON_1" loadingProps={{
+      <Button title="BUTTON_1" loadingProps={{
           size: "large",
           color: "rgba(111, 202, 186, 1)"
         }} titleStyle={{
@@ -106,8 +126,7 @@ export default class App extends React.Component {
           borderWidth: 0
         }} containerStyle={{
           marginTop: 20
-        }} value="REJOUER" color="#475577"/> */
-      }
+        }} value="REJOUER" color="#475577"/>
     </View>);
   }
 }
@@ -132,15 +151,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 25,
     // fontFamily: 'KaushanScript-Regular',
-  },
-
-  carres: {
-    width: 100,
-    height: 100,
-    backgroundColor: '#efefef',
-    padding: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
 
   h3: {
