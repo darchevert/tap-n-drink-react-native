@@ -70,7 +70,9 @@ export default class App extends React.Component {
       carre.push(<View style={{
           width: 70,
           height: 70,
-          backgroundColor: '#e2e2e2'
+          backgroundColor: '#e2e2e2',
+          textWrap : 'wrap'
+
         }}>
         <Text>{i + 1}</Text>
       </View>);
@@ -93,7 +95,7 @@ export default class App extends React.Component {
         }}>
         {carre}
       </View>
-      {/* <Button title="BUTTON_1" loadingProps={{
+       {/* <Button title="BUTTON_1" loadingProps={{
           size: "large",
           color: "rgba(111, 202, 186, 1)"
         }} titleStyle={{
@@ -106,8 +108,8 @@ export default class App extends React.Component {
           borderWidth: 0
         }} containerStyle={{
           marginTop: 20
-        }} value="REJOUER" color="#475577"/> */
-      }
+        }} value="REJOUER" color="#475577"/> */}
+
     </View>);
   }
 }
@@ -161,7 +163,6 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    textAlign: 'center',
     fontSize: 10,
     marginBottom: 70,
     marginTop: 0,
