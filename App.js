@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, ScrollView} from 'react-native';
 import {Font} from 'expo';
-import {Col, Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
 
 export default class App extends React.Component {
 
@@ -68,12 +67,17 @@ export default class App extends React.Component {
     var carre = [];
 
     for (var i = 0; i < this.state.myArray.length; i++) {
-      carre.push(<Col xs="4"><View style={styles.carre}><Text style={styles.h2}>{i + 1}</Text></View></Col>);
+      carre.push(<View style={{
+          width: 70,
+          height: 70,
+          backgroundColor: '#e2e2e2'
+        }}>
+        <Text>{i + 1}</Text>
+      </View>);
 
     }
 
     return (<View style={styles.container}>
-      <ScrollView>
       <Text style={styles.h3}>Règles du jeu</Text>
       <View>
 
@@ -81,10 +85,15 @@ export default class App extends React.Component {
         <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
       </View>
-
+      <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
         {carre}
-
-      <Button title="BUTTON_1" loadingProps={{
+      </View>
+      {/* <Button title="BUTTON_1" loadingProps={{
           size: "large",
           color: "rgba(111, 202, 186, 1)"
         }} titleStyle={{
@@ -97,8 +106,8 @@ export default class App extends React.Component {
           borderWidth: 0
         }} containerStyle={{
           marginTop: 20
-        }} value="REJOUER" color="#475577"/>
-</ScrollView>
+        }} value="REJOUER" color="#475577"/> */
+      }
     </View>);
   }
 }
@@ -122,16 +131,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     margin: 25,
-    color: '#475577',
     // fontFamily: 'KaushanScript-Regular',
   },
 
-  carre: {
-    width: 45,
-    height: 45,
+  carres: {
+    width: 100,
+    height: 100,
     backgroundColor: '#efefef',
-    borderColor: '#475577',
-    color: '#475577',
+    padding: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   h3: {
