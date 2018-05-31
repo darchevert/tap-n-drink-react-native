@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 import {Font} from 'expo';
 
 export default class App extends React.Component {
@@ -81,8 +81,8 @@ export default class App extends React.Component {
       <Text style={styles.h3}>Règles du jeu</Text>
       <View>
 
-        <Text style={styles.h1}>TAP'N'DRINK</Text>
-        <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
+          <Text style={styles.h1}>TAP'N'DRINK</Text>
+          <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
       </View>
       <View style={{
@@ -167,10 +167,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     color: '#efefef',
     // fontFamily: 'OpenSans-Regular',
-
-  },
-  case: {
-    borderColor: '#475577',
-    color: '#475577'
   }
+
 });
