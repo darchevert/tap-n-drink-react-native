@@ -36,7 +36,9 @@ export default class App extends React.Component {
           id: 9,
           value: false
         }
-      ]
+      ],
+      win : false,
+      isSelected: false
     };
   }
 
@@ -60,23 +62,47 @@ export default class App extends React.Component {
       return arra1;
     }
     shuffle(this.state.myArray);
+
+    function changeColor(){
+      if(this.state.value == "true") {
+        this.style.backgroundColor = 'green'
+        this.style.color = '#efefef'
+      }
+      else {
+        this.style.backgroundColor = '#e14938'
+        this.style.color = '#efefef'
+      }
+    }
   }
 
   render() {
 
+    function _toto(){
+      console.log("bonsoir");
+    }
+
     var carre = [];
 
     for (var i = 0; i < this.state.myArray.length; i++) {
-      carre.push(<View style={{
-          width: 70,
-          height: 70,
+      carre.push(<View
+        onPress={() => this.changeColor()}
+        style={{
+          width: 100,
+          height: 100,
           backgroundColor: '#e2e2e2',
-          textWrap : 'wrap'
-
-        }}>
-        <Text>{i + 1}</Text>
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderStyle: 'solid',
+          borderWidth: 2,
+          borderColor: '#475577'
+        }}
+        key={i}
+        >
+        <Text style={{
+          color: '#475577',
+          fontSize: 50
+        }}>{i + 1}</Text>
       </View>);
-
     }
 
     return (<View style={styles.container}>
@@ -91,24 +117,21 @@ export default class App extends React.Component {
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'center',
-          alignItems: 'center'
+          flexWrap: 'wrap',
         }}>
         {carre}
       </View>
-       {/* <Button title="BUTTON_1" loadingProps={{
-          size: "large",
-          color: "rgba(111, 202, 186, 1)"
-        }} titleStyle={{
-          fontWeight: "700"
-        }} buttonStyle={{
-          backgroundColor: "rgba(92, 99,216, 1)",
+
+      <Button title="REJOUER"
+        buttonStyle={{
+          backgroundColor: "rgb(15, 144, 207)",
           width: 45,
           height: 45,
-          borderColor: "transparent",
-          borderWidth: 0
-        }} containerStyle={{
-          marginTop: 20
-        }} value="REJOUER" color="#475577"/> */}
+          borderColor: "solid",
+          borderWidth: 1
+        }} color="rgb(215, 154, 16)"
+        onPress={() => this._toto()}>
+      </Button>
 
     </View>);
   }
@@ -136,15 +159,6 @@ const styles = StyleSheet.create({
     // fontFamily: 'KaushanScript-Regular',
   },
 
-  carres: {
-    width: 100,
-    height: 100,
-    backgroundColor: '#efefef',
-    padding: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
   h3: {
     textAlign: 'right',
     fontSize: 25,
@@ -163,6 +177,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    textAlign: 'center',
     fontSize: 10,
     marginBottom: 70,
     marginTop: 0,
