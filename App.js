@@ -4,41 +4,59 @@ import {Font} from 'expo';
 
 export default class App extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       myArray: [
         {
           id: 1,
-          value: true
+          value: true,
+          clicked: false,
         }, {
           id: 2,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 3,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 4,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 5,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 6,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 7,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 8,
-          value: false
+          value: false,
+          clicked: false,
+
         }, {
           id: 9,
-          value: false
+          value: false,
+          clicked: false,
+
         }
       ],
-      win : false,
-      isSelected: false
+      win: false,
+      isSelected: false,
+
     };
   }
 
@@ -63,45 +81,58 @@ export default class App extends React.Component {
     }
     shuffle(this.state.myArray);
 
-    function changeColor(){
-      if(this.state.value == "true") {
-        this.style.backgroundColor = 'green'
-        this.style.color = '#efefef'
+
+
+    jewelStyle = function(options) {
+     return {
+       borderRadius: 10,
+       background: 'blue',
+     }
+   }
+
+
+    function changeColor(val) {
+      let color = null;
+      if (val == "true") {
+        color = 'green'
+        console.log("green")
+      } else {
+        color = '#e14938'
+        console.log("red")
       }
-      else {
-        this.style.backgroundColor = '#e14938'
-        this.style.color = '#efefef'
+
+      return {
+        backgroundColor: color,
+        color : '#efefef'
       }
+
     }
   }
 
+
+
   render() {
-
-    function _toto(){
-      console.log("bonsoir");
-    }
-
     var carre = [];
-
     for (var i = 0; i < this.state.myArray.length; i++) {
       carre.push(<View
-        onPress={() => this.changeColor()}
+
         style={{
           width: 100,
           height: 100,
-          backgroundColor: '#e2e2e2',
           alignItems: 'center',
           justifyContent: 'center',
           borderStyle: 'solid',
           borderWidth: 2,
-          borderColor: '#475577'
+          borderColor: '#475577',
+          // backgroundColor: '#efefef'
         }}
+        onPress={this.state.myArray[i].clicked ? changeColor(this.state.myArray[i].value) : {backgroundColor:'#efefef'}}
         key={i}
         >
         <Text style={{
-          color: '#475577',
-          fontSize: 50
-        }}>{i + 1}</Text>
+            color: '#475577',
+            fontSize: 50
+          }}>{i + 1}</Text>
       </View>);
     }
 
@@ -109,30 +140,27 @@ export default class App extends React.Component {
       <Text style={styles.h3}>Règles du jeu</Text>
       <View>
 
-          <Text style={styles.h1}>TAP'N'DRINK</Text>
-          <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
+        <Text style={styles.h1}>TAP'N'DRINK</Text>
+        <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
 
       </View>
       <View style={{
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'center',
-          flexWrap: 'wrap',
+          flexWrap: 'wrap'
         }}>
         {carre}
       </View>
-
-      <Button title="REJOUER"
-        buttonStyle={{
-          backgroundColor: "rgb(15, 144, 207)",
-          width: 45,
-          height: 45,
-          borderColor: "solid",
-          borderWidth: 1
-        }} color="rgb(215, 154, 16)"
-        onPress={() => this._toto()}>
-      </Button>
-
+      <View>
+        <Button title="REJOUER" buttonStyle={{
+            backgroundColor: "rgb(15, 144, 207)",
+            width: 45,
+            height: 45,
+            borderColor: "solid",
+            borderWidth: 1
+          }} color="#efefef"></Button>
+      </View>
     </View>);
   }
 }
@@ -162,6 +190,7 @@ const styles = StyleSheet.create({
   h3: {
     textAlign: 'right',
     fontSize: 25,
+    marginTop: 25,
     marginBottom: 25,
     color: '#efefef',
     // fontFamily: 'KaushanScript-Regular',
@@ -179,7 +208,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 10,
-    marginBottom: 70,
+    marginBottom: 10,
     marginTop: 0,
     color: '#efefef',
     // fontFamily: 'OpenSans-Regular',
