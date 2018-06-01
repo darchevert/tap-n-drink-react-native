@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 import {Font} from 'expo';
 
 export default class App extends React.Component {
@@ -26,20 +26,15 @@ export default class App extends React.Component {
 
     return (<View style={styles.container}>
       <Text style={styles.h3} onPress={this.ReglesDuJeu}>Règles du jeu</Text>
-      <View>
-
         <Text style={styles.h1}>TAP'N'DRINK</Text>
         <Text style={styles.text}>AYEZ LA BONNE INTUITION</Text>
-
-      </View>
       <View style={{
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'center',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          marginBottom: 0
         }}>{carre}</View>
-
-      <View>
         <Button title="REJOUER" buttonStyle={{
             backgroundColor: "rgb(15, 144, 207)",
             width: 45,
@@ -47,7 +42,6 @@ export default class App extends React.Component {
             borderColor: "solid",
             borderWidth: 1
           }} color="#efefef"></Button>
-      </View>
     </View>);
   }
 }
@@ -59,37 +53,44 @@ export class Case extends React.Component {
     this.state = {
       clicked: false
     }
+  }
 
+  onPress(){
+      this.setState({
+        clicked: true
+      });
+  }
+  style(){
+      return {
+          backgroundColor: this.state.clicked ? (this.props.value === "true" ? '#61bd6d' : '#e14938') : '#efefef',
+          width: 100,
+          height: 100,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderStyle: 'solid',
+          borderWidth: 2,
+          borderColor: '#475577'
+      }
+  }
+
+  textStyle(){
+    return {
+      fontSize: 50,
+      color: this.state.clicked ? '#efefef' : '#475577',
+    }
   }
 
   render() {
-
     return (
-      <View style={{
-        width: 100,
-        height: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        borderColor: '#475577',
-        backgroundColor: '#efefef'
-      }}
-      onPress={this.onPress}>
-      <Text style={{
-          color: '#475577',
-          fontSize: 50}}>{this.props.chiffre}</Text>
-      </View>)
-  }
-  onPress(){
-      this.setState('clicked', true);
+      <TouchableOpacity  onPress={() => this.onPress()}>
+      <View style={this.style()}>
+      <Text
+          style={this.textStyle()}
+          >{this.props.chiffre}</Text>
+      </View>
+    </TouchableOpacity>)
   }
 
-  style(){
-      return {
-          backgroundColor: this.state.clicked ? (this.props.value === "true" ? 'green' : 'false') : 'red',
-      }
-  }
 }
 
 const styles = StyleSheet.create({
