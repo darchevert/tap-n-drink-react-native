@@ -1,143 +1,31 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 import {Font} from 'expo';
 
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      myArray: [
-        {
-          id: 1,
-          value: true,
-          clicked: false,
-        }, {
-          id: 2,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 3,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 4,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 5,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 6,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 7,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 8,
-          value: false,
-          clicked: false,
-
-        }, {
-          id: 9,
-          value: false,
-          clicked: false,
-
-        }
-      ],
-      win: false,
-      isSelected: false,
-
-    };
+  constructor() {
+    super();
   }
 
-  ComponentDidMount() {
-
-    function shuffle(arra1) {
-      var ctr = arra1.length,
-        temp,
-        index;
-      // While there are elements in the array
-      while (ctr > 0) {
-        // Pick a random index
-        index = Math.floor(Math.random() * ctr);
-        // Decrease ctr by 1
-        ctr--;
-        // And swap the last element with it
-        temp = arra1[ctr];
-        arra1[ctr] = arra1[index];
-        arra1[index] = temp;
-      }
-      return arra1;
-    }
-    shuffle(this.state.myArray);
-
-
-
-    jewelStyle = function(options) {
-     return {
-       borderRadius: 10,
-       background: 'blue',
-     }
-   }
-
-
-    function changeColor(val) {
-      let color = null;
-      if (val == "true") {
-        color = 'green'
-        console.log("green")
-      } else {
-        color = '#e14938'
-        console.log("red")
-      }
-
-      return {
-        backgroundColor: color,
-        color : '#efefef'
-      }
-
-    }
+  ReglesDuJeu() {
+    Alert.alert("Trouves parmis les 9 cases celle qui te permettra de distribuer" +
+    " des gorgées ou qui te fera boire des gorgées.\n \n Si tu trouves du premier coup," +
+    " tu distribues 4 gorgées, sinon une de moins à chaque coup jusqu'à devoir toi même boire des gorgées!")
   }
-
-
 
   render() {
-    var carre = [];
-    for (var i = 0; i < this.state.myArray.length; i++) {
-      carre.push(<View
 
-        style={{
-          width: 100,
-          height: 100,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderStyle: 'solid',
-          borderWidth: 2,
-          borderColor: '#475577',
-          // backgroundColor: '#efefef'
-        }}
-        onPress={this.state.myArray[i].clicked ? changeColor(this.state.myArray[i].value) : {backgroundColor:'#efefef'}}
-        key={i}
-        >
-        <Text style={{
-            color: '#475577',
-            fontSize: 50
-          }}>{i + 1}</Text>
-      </View>);
+    let arr = new Array(9).fill("false");
+    arr[Math.floor(Math.random() * 9)] = "true";
+
+    var carre = [];
+    for (var i = 1; i < 10; i++) {
+      carre.push(<Case value={arr[i]} chiffre={i} title={i}/>)
     }
 
     return (<View style={styles.container}>
-      <Text style={styles.h3}>Règles du jeu</Text>
+      <Text style={styles.h3} onPress={this.ReglesDuJeu}>Règles du jeu</Text>
       <View>
 
         <Text style={styles.h1}>TAP'N'DRINK</Text>
@@ -149,9 +37,8 @@ export default class App extends React.Component {
           flexDirection: 'row',
           justifyContent: 'center',
           flexWrap: 'wrap'
-        }}>
-        {carre}
-      </View>
+        }}>{carre}</View>
+
       <View>
         <Button title="REJOUER" buttonStyle={{
             backgroundColor: "rgb(15, 144, 207)",
@@ -162,6 +49,46 @@ export default class App extends React.Component {
           }} color="#efefef"></Button>
       </View>
     </View>);
+  }
+}
+
+export class Case extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false
+    }
+
+  }
+
+  render() {
+
+    return (
+      <View style={{
+        width: 100,
+        height: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: '#475577',
+        backgroundColor: '#efefef'
+      }}
+      onPress={this.onPress}>
+      <Text style={{
+          color: '#475577',
+          fontSize: 50}}>{this.props.chiffre}</Text>
+      </View>)
+  }
+  onPress(){
+      this.setState('clicked', true);
+  }
+
+  style(){
+      return {
+          backgroundColor: this.state.clicked ? (this.props.value === "true" ? 'green' : 'false') : 'red',
+      }
   }
 }
 
