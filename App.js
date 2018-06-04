@@ -1,12 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert, TouchableWithoutFeedback} from 'react-native';
 import {Font} from 'expo';
 
 export default class App extends React.Component {
 
-  constructor() {
+  constructor(){
     super();
   }
+
+  // componentDidMount() {
+  //   Font.loadAsync({
+  //     'KaushanScript-Regular': require('./assets/fonts/KaushanScript-Regular.ttf'),
+  //   });
+  // }
 
   ReglesDuJeu() {
     Alert.alert("Trouves parmis les 9 cases celle qui te permettra de distribuer" +
@@ -52,14 +58,19 @@ export class Case extends React.Component {
     super(props);
     this.state = {
       clicked: false
+      isDisabled: false,
     }
   }
 
   onPress(){
       this.setState({
-        clicked: true
+        clicked: true,
+        isDisabled: !this.state.isDisabled,
       });
+      console.log('coucou')
   }
+
+
   style(){
       return {
           backgroundColor: this.state.clicked ? (this.props.value === "true" ? '#61bd6d' : '#e14938') : '#efefef',
@@ -69,7 +80,7 @@ export class Case extends React.Component {
           justifyContent: 'center',
           borderStyle: 'solid',
           borderWidth: 2,
-          borderColor: '#475577'
+          borderColor: '#475577',
       }
   }
 
@@ -80,15 +91,22 @@ export class Case extends React.Component {
     }
   }
 
+isDisabled(){
+  return {
+    disabled: disabled="true"
+  }
+}
+
   render() {
+    const { isDisabled } = this.state
     return (
-      <TouchableOpacity  onPress={() => this.onPress()}>
+      <TouchableWithoutFeedback  onPress={() => this.onPress()}>
       <View style={this.style()}>
       <Text
           style={this.textStyle()}
           >{this.props.chiffre}</Text>
       </View>
-    </TouchableOpacity>)
+    </TouchableWithoutFeedback>)
   }
 
 }
@@ -107,6 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#efefef',
     // fontFamily: 'KaushanScript-Regular',
+    fontWeight: 'normal'
   },
   h2: {
     textAlign: 'center',
@@ -122,6 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     color: '#efefef',
     // fontFamily: 'KaushanScript-Regular',
+    fontWeight: 'normal'
   },
 
   h4: {
@@ -141,5 +161,4 @@ const styles = StyleSheet.create({
     color: '#efefef',
     // fontFamily: 'OpenSans-Regular',
   }
-
 });
