@@ -21,7 +21,6 @@ export default class App extends React.Component {
   }
 
   render() {
-
     let arr = new Array(9).fill("false");
     arr[Math.floor(Math.random() * 9)] = "true";
 
@@ -47,7 +46,8 @@ export default class App extends React.Component {
             height: 45,
             borderColor: "solid",
             borderWidth: 1
-          }} color="#efefef"></Button>
+          }} color="#efefef"
+          ></Button>
     </View>);
   }
 }
@@ -57,15 +57,18 @@ export class Case extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false
+      clicked: false,
       isDisabled: false,
     }
   }
 
   onPress(){
+
+
       this.setState({
         clicked: true,
-        isDisabled: !this.state.isDisabled,
+        // isDisabled: !this.state.isDisabled,
+      // this.props.value === "true" ? disabled={true} : disabled={false},
       });
       console.log('coucou')
   }
