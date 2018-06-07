@@ -46,7 +46,9 @@ export default class App extends React.Component {
             height: 45,
             borderColor: "solid",
             borderWidth: 1
-          }} color="#efefef"
+          }}
+          color="#efefef"
+          onPress={() => this.isReplayed}
           ></Button>
     </View>);
   }
@@ -62,14 +64,18 @@ export class Case extends React.Component {
     }
   }
 
+  // isReplayed(){
+  //   this.setState({
+  //     clicked: false
+  //   });
+  // }
+
   onPress(){
-
-
       this.setState({
         clicked: true,
-        // isDisabled: !this.state.isDisabled,
-      // this.props.value === "true" ? disabled={true} : disabled={false},
-      });
+        });
+        if(this.state.isDisabled){return;}
+        this.setState({isDisabled: true})
       console.log('coucou')
   }
 
@@ -95,9 +101,9 @@ export class Case extends React.Component {
   }
 
 isDisabled(){
-  return {
-    disabled: disabled="true"
-  }
+  this.setState({
+    disabled: true
+  });
 }
 
   render() {
