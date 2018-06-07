@@ -6,6 +6,7 @@ export default class App extends React.Component {
 
   constructor(){
     super();
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
 
   // componentDidMount() {
@@ -19,6 +20,10 @@ export default class App extends React.Component {
     " des gorgées ou qui te fera boire des gorgées.\n \n Si tu trouves du premier coup," +
     " tu distribues 4 gorgées, sinon une de moins à chaque coup jusqu'à devoir toi même boire des gorgées!")
   }
+
+  forceUpdateHandler(){
+    this.forceUpdate();
+  };
 
   render() {
     let arr = new Array(9).fill("false");
@@ -48,7 +53,7 @@ export default class App extends React.Component {
             borderWidth: 1
           }}
           color="#efefef"
-          onPress={() => this.isReplayed}
+          onPress={this.forceUpdateHandler}
           ></Button>
     </View>);
   }
@@ -64,11 +69,11 @@ export class Case extends React.Component {
     }
   }
 
-  // isReplayed(){
-  //   this.setState({
-  //     clicked: false
-  //   });
-  // }
+  isReplayed(){
+    this.setState({
+      clicked: false
+    });
+  }
 
   onPress(){
       this.setState({
@@ -111,9 +116,9 @@ isDisabled(){
     return (
       <TouchableWithoutFeedback  onPress={() => this.onPress()}>
       <View style={this.style()}>
-      <Text
-          style={this.textStyle()}
-          >{this.props.chiffre}</Text>
+      <Text style={this.textStyle()}>
+        {this.props.chiffre}
+      </Text>
       </View>
     </TouchableWithoutFeedback>)
   }
